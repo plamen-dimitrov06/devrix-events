@@ -4,10 +4,6 @@
  * Save the custom meta box data when the post is saved.
  */
 function basic_events_save_meta_box_data($post_id) {
-    if (!isset($_POST['basic_events_nonce']) || !wp_verify_nonce($_POST['basic_events_nonce'], basename(__FILE__))) {
-        return $post_id;
-    }
-
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
         return $post_id;
     }

@@ -20,8 +20,6 @@ add_action('add_meta_boxes', 'basic_events_add_meta_box');
  * Includes form fields for event date, location, URL, attendees, and media.
  */
 function basic_events_details_callback($post) {
-    wp_nonce_field(basename(__FILE__), 'basic_events_nonce');
-
     $event_date          = get_post_meta($post->ID, '_event_date', true);
     $event_location      = get_post_meta($post->ID, '_event_location', true);
     $event_url           = get_post_meta($post->ID, '_event_url', true);
