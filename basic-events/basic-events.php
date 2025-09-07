@@ -36,8 +36,6 @@ require_once plugin_dir_path(__FILE__) . 'includes/shortcodes/event-registration
 
 /**
  * Filter the event archive query to order by event date.
- *
- * @param WP_Query $query The main WP_Query object.
  */
 function basic_events_archive_query($query) {
     if (is_admin() || !$query->is_main_query() || !is_post_type_archive('event')) {
@@ -50,6 +48,9 @@ function basic_events_archive_query($query) {
 }
 add_action('pre_get_posts', 'basic_events_archive_query');
 
+/**
+ * Specify the template for the archive page.
+ */
 function basic_events_load_archive_template($template) {
     if (is_post_type_archive('event')) {
         $plugin_template = plugin_dir_path(__FILE__) . 'archive-event.php';
