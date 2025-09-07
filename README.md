@@ -10,3 +10,7 @@ Docker with wordpress and mariadb containers.
 ## Setup
 
 Complete the initial wordpress installation and activate the plugin.
+
+## Considerations
+
+PSR-4 Namespaces - In order to stick to the wordpress coding standards I've decided not to use PSR-4 Autoloading.
