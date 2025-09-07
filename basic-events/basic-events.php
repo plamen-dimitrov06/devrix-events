@@ -15,9 +15,8 @@ if (!defined('ABSPATH')) {
 require_once plugin_dir_path(__FILE__) . 'event-post-type.php';
 
 # Admin : Add the inputs for the event details.
-require_once plugin_dir_path(__FILE__) . 'includes/events/event-inputs.php';
-
 # Admin : Save the event meta data.
+require_once plugin_dir_path(__FILE__) . 'includes/events/event-inputs.php';
 require_once plugin_dir_path(__FILE__) . 'includes/events/event-save.php';
 
 /**
