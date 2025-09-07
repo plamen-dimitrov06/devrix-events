@@ -33,3 +33,30 @@ add_action('admin_enqueue_scripts', 'basic_events_enqueue_media_uploader');
 
 # Shortcode : Form for registering for an event on the storefront.
 require_once plugin_dir_path(__FILE__) . 'includes/shortcodes/event-registration.php';
+
+/**
+ * Filter the event archive query to order by event date.
+ *
+ * @param WP_Query $query The main WP_Query object.
+ */
+function basic_events_archive_query($query) {
+    if (is_admin() || !$query->is_main_query() || !is_post_type_archive('event')) {
+        return;
+    }
+
+    $query->set('meta_key', '_event_date');
+    $query->set('orderby', 'meta_value');
+    $query->set('order', 'ASC');
+}
+add_action('pre_get_posts', 'basic_events_archive_query');
+
+function basic_events_load_archive_template($template) {
+    if (is_post_type_archive('event')) {
+        $plugin_template = plugin_dir_path(__FILE__) . 'archive-event.php';
+        if (file_exists($plugin_template)) {
+            return $plugin_template;
+        }
+    }
+    return $template;
+}
+add_filter('template_include', 'basic_events_load_archive_template');
